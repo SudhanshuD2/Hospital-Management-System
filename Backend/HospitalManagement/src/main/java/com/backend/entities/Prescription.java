@@ -1,7 +1,11 @@
 package com.backend.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -22,6 +26,9 @@ public class Prescription extends BaseEntity{
 	private String doctorNotes;
 	
 	// One Appointment → One Prescription
-	@OneToOne(mappedBy = "perscription")
+	@OneToOne(mappedBy = "prescription")
 	private Appointment appointment;
+	
+	@OneToMany(mappedBy = "prescription")
+    private List<PrescriptionMedicine> medicines = new ArrayList<>();
 }

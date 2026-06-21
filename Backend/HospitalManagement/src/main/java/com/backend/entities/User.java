@@ -8,6 +8,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -15,6 +16,7 @@ import lombok.ToString;
 @Table(name="users")
 @Getter
 @Setter
+@NoArgsConstructor
 @AttributeOverride(name = "id", column = @Column(name="user_id"))
 @ToString(callSuper = true)
 public class User extends BaseEntity{
@@ -31,6 +33,9 @@ public class User extends BaseEntity{
 	@Column(length= 12, nullable = false)
 	private String phone;
 	
+	@Column(name = "is_active")
+	private Boolean isActive=true;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name="user_role")
 	private UserRole userRole;
@@ -41,6 +46,14 @@ public class User extends BaseEntity{
 	@OneToOne(mappedBy = "user")
 	private Patient patient;
 	
+	public User(String firstName, String lastName, String email, String password, String phone, UserRole userRole) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.phone = phone;
+		this.userRole = userRole;
+	}
 	/*
 	 * No connections here
 	 * One User can be:

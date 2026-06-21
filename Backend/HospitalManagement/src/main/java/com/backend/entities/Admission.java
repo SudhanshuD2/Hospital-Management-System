@@ -15,7 +15,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table
+@Table(name = "admissions")
 @Getter
 @Setter
 @ToString(callSuper = true)

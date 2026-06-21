@@ -1,0 +1,409 @@
+# Hospital Management System - Service Layer Practice
+
+## Objective
+
+Build Repository, Service, DTO, and Controller layers for the Hospital Management System.
+
+Do NOT use Exception Handling, Security, JWT, Pagination, or Specifications.
+
+Use Spring Data JPA's built-in methods wherever possible.
+
+---
+
+# Repositories
+
+Create repositories for:
+
+1. UserRepository
+2. DoctorRepository
+3. PatientRepository
+4. DepartmentRepository
+5. AppointmentRepository
+6. PrescriptionRepository
+7. MedicineRepository
+8. AdmissionRepository
+9. RoomRepository
+10. MedicalRecordRepository
+11. PrescriptionMedicineRepository
+
+All repositories should extend:
+
+JpaRepository<Entity, Long>
+
+---
+
+# DTOs
+
+## User DTOs
+
+Create:
+
+* UserRequestDto
+* UserResponseDto
+
+---
+
+## Doctor DTOs
+
+Create:
+
+* DoctorRequestDto
+* DoctorResponseDto
+
+DoctorRequestDto should contain:
+
+* userId
+* specialization
+* experienceYears
+* consultationFee
+* departmentId
+
+---
+
+## Patient DTOs
+
+Create:
+
+* PatientRequestDto
+* PatientResponseDto
+
+PatientRequestDto should contain:
+
+* userId
+* bloodGroup
+* dateOfBirth
+* emergencyContact
+
+---
+
+## Department DTOs
+
+Create:
+
+* DepartmentRequestDto
+* DepartmentResponseDto
+
+---
+
+## Appointment DTOs
+
+Create:
+
+* AppointmentRequestDto
+* AppointmentResponseDto
+
+AppointmentRequestDto should contain:
+
+* doctorId
+* patientId
+* appointmentDateTime
+
+Status should default to PENDING.
+
+---
+
+## Medicine DTOs
+
+Create:
+
+* MedicineRequestDto
+* MedicineResponseDto
+
+---
+
+## Room DTOs
+
+Create:
+
+* RoomRequestDto
+* RoomResponseDto
+
+---
+
+# Service Layer
+
+For every service create:
+
+Interface
+
+Example:
+
+DoctorService
+
+Implementation
+
+DoctorServiceImpl
+
+---
+
+# Department Operations
+
+Implement:
+
+1. Add Department
+
+2. Get All Departments
+
+3. Get Department By Id
+
+4. Update Department
+
+5. Delete Department
+
+---
+
+# Doctor Operations
+
+Implement:
+
+1. Register Doctor
+
+2. Get Doctor By Id
+
+3. Get All Doctors
+
+4. Update Consultation Fee
+
+5. Delete Doctor
+
+---
+
+# Patient Operations
+
+Implement:
+
+1. Register Patient
+
+2. Get Patient By Id
+
+3. Get All Patients
+
+4. Update Emergency Contact
+
+5. Delete Patient
+
+---
+
+# Appointment Operations
+
+Implement:
+
+1. Book Appointment
+
+2. Get Appointment By Id
+
+3. Get All Appointments
+
+4. Cancel Appointment
+
+5. Complete Appointment
+
+---
+
+# Medicine Operations
+
+Implement:
+
+1. Add Medicine
+
+2. Get Medicine By Id
+
+3. Get All Medicines
+
+4. Update Price
+
+5. Delete Medicine
+
+---
+
+# Room Operations
+
+Implement:
+
+1. Add Room
+
+2. Get Room By Id
+
+3. Get All Rooms
+
+4. Update Room Status
+
+5. Delete Room
+
+---
+
+# Repository Methods
+
+Use built-in methods first:
+
+save()
+
+findById()
+
+findAll()
+
+delete()
+
+deleteById()
+
+existsById()
+
+---
+
+# Custom Repository Methods
+
+Create only these custom methods:
+
+DoctorRepository
+
+findBySpecialization(String specialization)
+
+---
+
+PatientRepository
+
+findByBloodGroup(BloodGroup bloodGroup)
+
+---
+
+AppointmentRepository
+
+findByStatus(AppointmentStatus status)
+
+findByDoctorId(Long doctorId)
+
+findByPatientId(Long patientId)
+
+---
+
+RoomRepository
+
+findByStatus(RoomStatus status)
+
+---
+
+# Controllers
+
+Create REST Controllers:
+
+1. DoctorController
+
+2. PatientController
+
+3. DepartmentController
+
+4. AppointmentController
+
+5. MedicineController
+
+6. RoomController
+
+---
+
+# Required Endpoints
+
+## Department
+
+POST /departments
+
+GET /departments
+
+GET /departments/{id}
+
+PUT /departments/{id}
+
+DELETE /departments/{id}
+
+---
+
+## Doctor
+
+POST /doctors
+
+GET /doctors
+
+GET /doctors/{id}
+
+PUT /doctors/{id}/fee
+
+DELETE /doctors/{id}
+
+---
+
+## Patient
+
+POST /patients
+
+GET /patients
+
+GET /patients/{id}
+
+PUT /patients/{id}/contact
+
+DELETE /patients/{id}
+
+---
+
+## Appointment
+
+POST /appointments
+
+GET /appointments
+
+GET /appointments/{id}
+
+PUT /appointments/{id}/cancel
+
+PUT /appointments/{id}/complete
+
+---
+
+## Medicine
+
+POST /medicines
+
+GET /medicines
+
+GET /medicines/{id}
+
+PUT /medicines/{id}/price
+
+DELETE /medicines/{id}
+
+---
+
+## Room
+
+POST /rooms
+
+GET /rooms
+
+GET /rooms/{id}
+
+PUT /rooms/{id}/status
+
+DELETE /rooms/{id}
+
+---
+
+# Rules
+
+1. Controllers must never access repositories directly.
+
+2. Controllers talk only to Services.
+
+3. Services talk to Repositories.
+
+4. DTOs should be returned from Controllers.
+
+5. Entities should never be exposed directly from Controllers.
+
+6. Use constructor injection.
+
+7. No field injection.
+
+8. No exception handling for now.
+
+9. No ModelMapper. Perform mapping manually.
+
+10. Build Service Interfaces before Service Implementations.

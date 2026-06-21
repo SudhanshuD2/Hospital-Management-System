@@ -44,6 +44,6 @@ public class Appointment extends BaseEntity{
 	
 	@OneToOne
 	@JoinColumn(name="prescription_id")
-	private Prescription perscription;
+	private Prescription prescription;
 	
 }
